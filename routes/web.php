@@ -26,3 +26,35 @@ Route::get('/tungkolsakin', function () {
 Route::get('/job', function () {
 	return view('job.job');
 });
+
+
+//Teams
+Route::get('/teams', "TeamController@displayTeam");
+
+Route::get('/teammember/{id}', "TeamController@displayTeamMember");
+
+// Teams -> User
+Route::get('/users', "TeamController@displayUser");
+
+//Roles
+Route::get('/roles', "RoleController@displayRole");
+
+
+Route::group(['middleware' => 'admin'], function() {
+
+Route::get('/teams/edit/{id}', "TeamController@edit");
+Route::post('/addTeams', "TeamController@addTeam");
+Route::patch('teams/edit/{id}', "TeamController@save");
+Route::delete('/teams/delete{id}', "TeamController@delete");
+Route::post('/teams/moveuser/{id}', "TeamController@moveUser");
+Route::post('/addRoles', "RoleController@addRole");
+Route::get('/roles/edit/{id}', "RoleController@edit");
+Route::patch('roles/edit/{id}', "RoleController@save");
+Route::delete('/roles/delete/{id}', "RoleController@delete"); //not being used for the moment
+
+});
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

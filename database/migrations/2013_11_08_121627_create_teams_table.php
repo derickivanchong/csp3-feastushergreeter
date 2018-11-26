@@ -16,13 +16,7 @@ class CreateTeamsTable extends Migration
         Schema::create('teams', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name_of_team');
-            $table->unsignedInteger('role_id');
-            $table->timestamps();
-
-            $table->foreign('role_id')
-            ->references('id')->on('roles')
-            ->onDelete('restrict')
-            ->onUpdate('cascade');
+            $table->timestamps();            
         });
     }
 

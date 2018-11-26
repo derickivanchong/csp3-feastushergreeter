@@ -21,21 +21,21 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->unsignedInteger('role_id');
-            $table->unsignedInteger('team_id');
-            $table->string('active_or_not');
+            $table->unsignedInteger('role_id')->default(6);
+            $table->unsignedInteger('team_id')->default(1);
+            $table->string('active_or_not')->default('active');
             $table->rememberToken();
             $table->timestamps();
 
-            $table->foreign('role_id')
-            ->references('id')->on('roles')
-            ->onDelete('restrict')
-            ->onUpdate('cascade');
+            // $table->foreign('role_id')
+            // ->references('id')->on('roles')
+            // ->onDelete('restrict')
+            // ->onUpdate('cascade');
 
-            $table->foreign('team_id')
-            ->references('id')->on('teams')
-            ->onDelete('restrict')
-            ->onUpdate('cascade');
+            // $table->foreign('team_id')
+            // ->references('id')->on('teams')
+            // ->onDelete('restrict')
+            // ->onUpdate('cascade');
         });
     }
 
